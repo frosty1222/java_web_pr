@@ -1,0 +1,33 @@
+<html xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+<head>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<title>Club Detail</title>
+</head>
+<body>
+    <div class="container custom-editform" layout:fragment="body">
+       <div class="row">
+           <div class="col-12 text-left">
+                <div class="custom-detail">
+                   <div class="card" style="width: 28rem;">
+					  <img class="card-img-top" th:src="${club.photoURL}" alt="">
+					  <div class="card-body">
+					    <p class="card-text" th:text="${club.title}"></p>
+					    <a th:href="@{/clubs}">Return home</a>
+					  </div>
+					</div>
+               </div>
+               <div class="list-club">
+                   <ul>
+                       <li th:if="${club.createdOn}" th:text="${club.createdOn}"></li>
+                       <li th:if="${club.updatedOn}" th:text="${club.updatedOn}"></li>
+                       <li th:text="${club.content}"></li>
+                   </ul>
+               </div>
+           </div>
+       </div>
+    </div>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
