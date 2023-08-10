@@ -14,6 +14,6 @@ import com.rungroop.web.models.Club;
 @Repository
 public interface ClubRepository extends JpaRepository<Club, Long> {
   Optional<Club> findByTitle(String Url);
-  @Query("SELECT c from Club c where c.title like CONCAT('%', :query, '%')")
-  List<Club> searchClubs(String query);
+  @Query("SELECT c from Club c WHERE c.title LIKE :query OR :query='' ")
+ public List<Club> searchClubs(String query);
 }

@@ -87,6 +87,6 @@ public class ClubController {
   public String searchClub(@RequestParam(value="query") String query, Model model) {
 	  List<ClubDto> clubs = clubService.searchClubs(query);
 	  model.addAttribute("clubs",clubs);
-	  return "club-list";
+	  return "club";
   }
 }

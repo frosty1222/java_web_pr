@@ -4,6 +4,7 @@ layout:decorate="~{layout}"
 >
 <head>
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/customCss/styles.css}">
 </head>
 <body>
     <div class="container" layout:fragment="body">
@@ -11,6 +12,11 @@ layout:decorate="~{layout}"
            <div class="col-12 text-center">
                 <div class="col-10">
                     <div class="row gx-5">
+	                    <div class="custom-form-search">
+	                       <form th:action="@{/clubs/search}" class="form-inline my-2 my-lg-0 mb-3">
+	                          <input name="query" class="form-control mr-sm-2 mb-5" placeholder="Search running clubs" aria-lable="Search">
+	                       </form>
+	                    </div>
                        <div th:each="club :${clubs}" class="col-lg-4 mt-5">
                            <div class="position-relative mb-5">
                            <div class="card" style="width: 18rem;">
