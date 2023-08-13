@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.rungroop.web.dto.ClubDto;
 import com.rungroop.web.models.Club;
 
+@Service
 public interface ClubService {
    List<ClubDto> findAllClubs();
    
