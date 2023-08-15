@@ -22,8 +22,8 @@ public class EventServiceImpl implements EventService{
 	public void createEvent(Long clubId, EventDto eventDto) {
 		Club club = clubRepository.findById(clubId).get();
 		Event event = mapToEvent(eventDto);
+		event.setClub(club);
 		eventRepository.save(event);
-		clubRepository.save(club);
 	}
     
 	private Event mapToEvent(EventDto eventDto) {

@@ -15,6 +15,7 @@ layout:decorate="~{layout}">
 					  <div class="card-body">
 					    <p class="card-text" th:text="${club.title}"></p>
 					    <a th:href="@{/clubs}">Return home</a>
+					    <a th:href="@{/events/{clubId}/new(clubId=${club.id})}">Create Event</a>
 					  </div>
 					</div>
                </div>

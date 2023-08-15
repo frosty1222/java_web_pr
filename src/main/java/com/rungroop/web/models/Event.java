@@ -15,6 +15,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,14 +32,21 @@ public class Event {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+   @NotNull(message="this field is not allowed to be null")
    private String name;
+   @NotNull(message="this field is not allowed to be null")
    private LocalDateTime startTime;
+   @NotNull(message="this field is not allowed to be null")
    private LocalDateTime endTime;
+   @NotNull(message="this field is not allowed to be null")
    private String Type;
    @Column(columnDefinition = "text")
+   @NotNull(message="this field is not allowed to be null")
    private String photoUrl;
    @CreationTimestamp
    private LocalDateTime createdOn;
+   @UpdateTimestamp
+   private LocalDateTime updatedOn;
    public Long getId() {
 	return id;
 }
@@ -92,8 +101,6 @@ public Club getClub() {
 public void setClub(Club club) {
 	this.club = club;
 }
-   @UpdateTimestamp
-   private LocalDateTime updatedOn;
    @ManyToOne
    @JoinColumn(name="club_id",nullable=false)
    private Club club;
