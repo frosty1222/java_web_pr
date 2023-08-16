@@ -141,9 +141,9 @@ public static class Builder {
      return clubDto;
  }
 
-public Builder events(List<EventDto> collect) {
-    this.events = collect;
-	return this;
-}
-}
+	public Builder events(List<EventDto> collect) {
+	    this.events = collect;
+		return this;
+	}
+  }
 }
