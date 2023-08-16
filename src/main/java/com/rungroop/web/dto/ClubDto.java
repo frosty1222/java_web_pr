@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 @Data
 @Getter
 @Setter
@@ -28,6 +29,7 @@ public class ClubDto {
    private String content;
    private LocalDateTime createdOn;
    private LocalDateTime updatedOn;
+   private List<EventDto> events;
  public static Builder builder() {
  return new Builder();
 }
@@ -79,7 +81,15 @@ return id;
 public void setId(Long id) {
 this.id = id;
 }
+// Getter for events
+public List<EventDto> getEvents() {
+    return events;
+}
 
+// Setter for events
+public void setEvents(List<EventDto> events) {
+    this.events = events;
+}
 public static class Builder {
  private Long id;
  private String title;
@@ -87,6 +97,7 @@ public static class Builder {
  private String content;
  private LocalDateTime createdOn;
  private LocalDateTime updatedOn;
+ private List<EventDto> events;
 
  public Builder id(Long id) {
      this.id = id;
@@ -126,7 +137,13 @@ public static class Builder {
      clubDto.setContent(this.content);
      clubDto.setCreatedOn(this.createdOn);
      clubDto.setUpdatedOn(this.updatedOn);
+     clubDto.setEvents(this.events);
      return clubDto;
  }
+
+public Builder events(List<EventDto> collect) {
+    this.events = collect;
+	return this;
+}
 }
 }

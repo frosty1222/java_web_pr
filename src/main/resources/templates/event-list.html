@@ -1,0 +1,41 @@
+<html xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}"
+>
+<head>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{/customCss/styles.css}">
+</head>
+<body>
+    <div class="container" layout:fragment="body">
+       <div class="row">
+           <div class="col-12 text-center">
+                <div class="col-10">
+                    <div class="row gx-5">
+	                    <div class="custom-form-search">
+	                       <form th:action="@{/clubs/search}" class="form-inline my-2 my-lg-0 mb-3">
+	                          <input name="query" class="form-control mr-sm-2 mb-5" placeholder="Search running events" aria-lable="Search">
+	                       </form>
+	                    </div>
+                       <div th:each="event :${events}" class="col-lg-4 mt-5">
+                           <div class="position-relative mb-5">
+                           <div class="card" style="width: 18rem;">
+								  <img th:src="${event.photoUrl}"  alt="..." height="300px" />
+								  <div class="card-body">
+								    <h5 class="card-title" th:text="${event.name}"></h5>
+								    <p class="card-text" th:text="${event.type}"></p>
+								    <!--<a class="btn btn-primary" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+								    <a class="btn btn-primary" th:href="@{/clubs/{clubId}(clubId=${club.id})}">Detail</a>
+								    <a class="btn btn-primary" th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}">Delete</a> -->					  
+								   </div>
+								</div>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+           </div>
+       </div>
+    </div>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -101,6 +101,7 @@ public class EventDto{
 		 private String type;
 		 private LocalDateTime startTime;
 		 private LocalDateTime endTime;
+		 private Club club;
 
 		 public Builder id(Long id) {
 		     this.id = id;
@@ -131,6 +132,10 @@ public class EventDto{
 		     this.startTime = startTime;
 		     return this;
 		 }
+		 public Builder club(Club club) {
+				this.club = club;
+				return this;
+			}
 
 		 public EventDto build() {
 			 EventDto eventDto = new EventDto();
@@ -140,8 +145,10 @@ public class EventDto{
 			 eventDto.setType(this.type);
 			 eventDto.setEndTime(this.endTime);
 			 eventDto.setStartTime(this.startTime);
+			 eventDto.setClub(this.club);
 		     return eventDto;
 		      }
+
 	      }
 }
 

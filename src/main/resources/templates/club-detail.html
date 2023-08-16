@@ -17,7 +17,7 @@ layout:decorate="~{layout}">
 					    <a th:href="@{/clubs}">Return home</a>
 					    <a th:href="@{/events/{clubId}/new(clubId=${club.id})}">Create Event</a>
 					  </div>
-					</div>
+				   </div>
                </div>
                <div class="list-club">
                    <ul>
@@ -25,6 +25,17 @@ layout:decorate="~{layout}">
                        <li th:if="${club.updatedOn}" th:text="${club.updatedOn}"></li>
                        <li th:text="${club.content}"></li>
                    </ul>
+               </div>
+               <h3>Events Headline</h3>
+               <div class="custom-detail-event" th:each="event :${club.events}">
+                   <div class="card" style="width: 20rem;">
+					  <img class="card-img-top" th:src="${event.photoUrl}" alt="">
+					  <div class="card-body">
+					    <p class="card-text" th:text="${event.name}"></p>
+					   <!-- <a th:href="@{/clubs}">Return home</a> --> 
+					   <!-- <a th:href="@{/events/{clubId}/new(clubId=${club.id})}">Create Event</a> -->
+					  </div>
+				   </div>
                </div>
            </div>
        </div>

@@ -1,5 +1,7 @@
 package com.rungroop.web.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,5 +39,12 @@ public class EventController {
 	  }
       eventService.createEvent(clubId, eventDto);
       return "redirect:/clubs/" + clubId;
+  }
+  
+  @GetMapping("/events")
+  public String eventList(Model model) {
+	  List<EventDto> events = eventService.findAllEvents();
+	  model.addAttribute("events",events);
+	  return "event-list";
   }
 }
