@@ -10,7 +10,7 @@ public class EventMapper {
         .name(eventDto.getName())
         .startTime(eventDto.getStartTime())
         .endTime(eventDto.getEndTime())
-        .type(eventDto.getType())
+        .Type(eventDto.getType())
         .photoUrl(eventDto.getPhotoUrl())
         .club(eventDto.getClub()) // Assuming EventDto has a Club field
         .build();
@@ -22,7 +22,7 @@ public class EventMapper {
         .name(event.getName())
         .startTime(event.getStartTime())
         .endTime(event.getEndTime())
-        .type(event.getType())
+        .Type(event.getType())
         .photoUrl(event.getPhotoUrl())
         .club(event.getClub()) // Assuming EventDto has a Club field
         .build();

@@ -2,6 +2,7 @@ package com.rungroop.web.controller;
 
 import java.util.List;
 
+import com.rungroop.web.dto.ClubDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,5 +47,36 @@ public class EventController {
 	  List<EventDto> events = eventService.findAllEvents();
 	  model.addAttribute("events",events);
 	  return "event-list";
+  }
+
+  @GetMapping("/events-detail/{eventId}")
+    public String eventDetail(@PathVariable("eventId") Long eventId,  Model model){
+       EventDto eventDto = eventService.findEventById(eventId);
+       model.addAttribute("events",eventDto);
+       return "events-detail";
+    }
+  @GetMapping("/events/{eventId}/edit")
+  public String eventEdit(@PathVariable("eventId") Long eventId,Model model){
+       EventDto eventDto = eventService.findEventById(eventId);
+       model.addAttribute("event",eventDto);
+       return "event-edit";
+
+  }
+  @PostMapping("/events/{eventId}/edit")
+  public String eventEdit(@PathVariable("eventId") Long eventId,@Valid  @ModelAttribute("club") EventDto eventDto, Model model, BindingResult result){
+    EventDto event =  eventService.findEventById(eventId);
+     if(result.hasErrors()){
+         model.addAttribute("event",eventDto);
+         return "event-edit";
+     }
+      eventDto.setId(eventId);
+      eventDto.setClub(event.getClub());
+      eventService.updateEvent(eventDto);
+      return "redirect:/events";
+  }
+  @GetMapping("/events/{eventId}/delete")
+  public String deleteSingleEvent(@PathVariable("eventId") Long eventId){
+       eventService.delete(eventId);
+       return "redirect:/events";
   }
 }

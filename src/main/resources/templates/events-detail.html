@@ -1,0 +1,50 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <title>Club Detail</title>
+</head>
+<body>
+<div class="container custom-editform" layout:fragment="body">
+    <div class="row">
+        <div class="col-12 text-left">
+            <div class="custom-detail">
+                <div class="card" style="width: 28rem;">
+                    <img class="card-img-top" th:src="${events.photoUrl}" alt="">
+                    <div class="card-body">
+                        <p class="card-text" th:text="${events.Type}"></p>
+                        <a th:href="@{/events}">Return home</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-club">
+                <ul>
+                    <li th:if="${events.startTime}">
+                        <label>Ngày bắt đâù</label>
+                        <span th:text="${events.startTime}"></span>
+                    </li>
+                    <li th:if="${events.endTime}">
+                        <label>Ngày kết thúc</label>
+                        <span  th:text="${events.endTime}"></span>
+                    </li>
+                    <li th:if="${events.createdOn}" th:text="${events.createdOn}"></li>
+                    <li th:if="${events.updatedOn}" th:text="${events.updatedOn}"></li>
+                </ul>
+            </div>
+<!--            <div class="custom-detail-event" th:each="event :${club.events}">-->
+<!--                <div class="card" style="width: 20rem;">-->
+<!--                    <img class="card-img-top" th:src="${event.photoUrl}" alt="">-->
+<!--                    <div class="card-body">-->
+<!--                        <p class="card-text" th:text="${event.name}"></p>-->
+<!--                        &lt;!&ndash; <a th:href="@{/clubs}">Return home</a> &ndash;&gt;-->
+<!--                        &lt;!&ndash; <a th:href="@{/events/{clubId}/new(clubId=${club.id})}">Create Event</a> &ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
