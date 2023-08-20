@@ -1,0 +1,45 @@
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+>
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/customCss/styles.css}">
+</head>
+<body>
+<div class="container" layout:fragment="body">
+    <div class="row">
+        <div class="col-12">
+            <div class="col-10 text-left">
+                <legend>Form Register</legend>
+                <div th:if="${param.fail}" class="alert alert-success mt-3" id="register-fail">
+                     Your username or email existed!
+                </div>
+               <form th:action="@{/register/save}" method="post" th:object="${user}" role="form">
+                   <div class="form-group">
+                       <label>User Email</label>
+                       <input type="email" th:field="*{email}" class="form-control" placeholder="userEmail..." />
+                       <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+                   </div>
+                   <div class="form-group">
+                       <label class="mt-2">User Name</label>
+                       <input type="text" th:field="*{username}" class="form-control" placeholder="userName..." />
+                       <p th:if="${#fields.hasErrors('username')}" class="text-danger" th:errors="*{username}"></p>
+                   </div>
+                   <div class="form-group">
+                       <label class="mt-2">User Password</label>
+                       <input type="password" th:field="*{password}" class="form-control" placeholder="userPassword..." />
+                       <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
+                   </div>
+                   <div class="form-group">
+                       <button class="btn btn-primary" type="submit">Register</button>
+                       <a th:href="@{/login}" class="btn btn-link">Already registered! Login here.</a>
+                   </div>
+               </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

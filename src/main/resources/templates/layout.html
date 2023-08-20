@@ -22,20 +22,29 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
           <a class="nav-link active" aria-current="page" href="/clubs">Home</a>
         </li>
 	        <li class="nav-item">
-	          <a class="nav-link" href="/clubs/new">Add Clubs</a>
+	          <a class="nav-link" th:href="@{/clubs/new}">Add Clubs</a>
 	        </li>
 	         <li class="nav-item">
-	           <a class="nav-link" href="/events">Find Events</a>
+	           <a class="nav-link" th:href="@{/events}">Find Events</a>
 	         </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/register}">Register</a>
+            </li>
 	         <li class="nav-item">
-	           <a class="nav-link" href="#">Directory</a>
+	           <a class="nav-link" th:href="@{/logout}">Logout</a>
 	         </li>
         </ul>
     </div>
   </div>
   </nav>
+<!--scripts area-->
   <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-<body layout:fragment="body"></body>
+  <script type="text/javascript" th:src="@{/customJs/custom-js.js}"></script>
+<body layout:fragment="body">
+</body>
 <!-- Footer -->
 <footer class="bg-dark text-center text-white">
   <!-- Grid container -->
