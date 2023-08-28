@@ -2,6 +2,7 @@ package com.rungroop.web.dto;
 
 import java.time.LocalDateTime;
 
+import com.rungroop.web.models.UserEntity;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -30,4 +31,5 @@ public class ClubDto {
    private LocalDateTime createdOn;
    private LocalDateTime updatedOn;
    private List<EventDto> events;
+   private UserEntity createdBy;
 }

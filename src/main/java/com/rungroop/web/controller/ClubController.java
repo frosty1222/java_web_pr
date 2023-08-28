@@ -2,6 +2,9 @@ package com.rungroop.web.controller;
 
 import java.util.List;
 
+import com.rungroop.web.models.UserEntity;
+import com.rungroop.web.security.SecurityUtil;
+import com.rungroop.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +25,28 @@ import jakarta.validation.Valid;
 @Controller
 public class ClubController {
   private final ClubService clubService;
-  
+  private UserService userService;
  
   @Autowired
-  public ClubController(ClubService clubService) {
+  public ClubController(ClubService clubService,UserService userService) {
 	this.clubService = clubService;
+	this.userService = userService;
   }
 
 
 
   @GetMapping("/clubs")
   public String listClubs(Model model) {
+	  UserEntity user = new UserEntity();
 	  List<ClubDto> clubs  = clubService.findAllClubs();
+	  String username = SecurityUtil.getSessionUser();
+	  System.out.println("username"+username);
+	  if(username !=null){
+		  user = userService.findByEmail(username);
+		  System.out.println("user"+user.getId());
+		  model.addAttribute("user",user.getId());
+	  }
+	  model.addAttribute("user",user);
 	  model.addAttribute("clubs",clubs);
 	  return "club";
   }

@@ -6,6 +6,7 @@ import com.rungroop.web.models.UserEntity;
 import com.rungroop.web.repository.RoleRepository;
 import com.rungroop.web.repository.UserRepository;
 import com.rungroop.web.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,10 +14,11 @@ import java.util.Arrays;
 public class UserServiceImpl implements UserService {
     final UserRepository userRepository;
     final RoleRepository roleRepository;
-
-    public UserServiceImpl(RoleRepository roleRepository,UserRepository userRepository) {
+    private PasswordEncoder passwordEncoder;
+    public UserServiceImpl(RoleRepository roleRepository,UserRepository userRepository,PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
         UserEntity user = new UserEntity();
         user.setUsername(registrationDto.getUsername());
         user.setEmail(registrationDto.getEmail());
-        user.setPassword(registrationDto.getPassword());
+        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
         Role role = roleRepository.findByName("USER");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);

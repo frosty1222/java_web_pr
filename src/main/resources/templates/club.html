@@ -30,9 +30,11 @@ layout:decorate="~{layout}"
 								  <div class="card-body">
 								    <h5 class="card-title" th:text="${club.title}"></h5>
 								    <p class="card-text" th:text="${club.content}"></p>
-								    <a class="btn btn-primary" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
-								    <a class="btn btn-primary" th:href="@{/clubs/{clubId}(clubId=${club.id})}">Detail</a>
-								    <a class="btn btn-primary" th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}">Delete</a>								  
+                                      <div  th:if="${user} == ${club.createdBy}">
+                                          <a class="btn btn-primary" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+                                          <a class="btn btn-primary" th:href="@{/clubs/{clubId}(clubId=${club.id})}">Detail</a>
+                                          <a class="btn btn-primary" th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}">Delete</a>
+                                      </div>
 								   </div>
 								</div>
                            </div>

@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.rungroop.web.models.UserEntity;
+import com.rungroop.web.repository.UserRepository;
+import com.rungroop.web.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +19,12 @@ import com.rungroop.web.service.ClubService;
 @Service
 public class ClubServiceImpl implements ClubService{
     private ClubRepository clubRepository;
+
+	private UserRepository userRepository;
     @Autowired
-    public ClubServiceImpl(ClubRepository clubRepository) {
+    public ClubServiceImpl(ClubRepository clubRepository,UserRepository userRepository) {
     	this.clubRepository = clubRepository;
+		this.userRepository  = userRepository;
     }
 	@Override
 	public List<ClubDto> findAllClubs() {
@@ -28,8 +34,13 @@ public class ClubServiceImpl implements ClubService{
 	
     @Override
     public Club saveClub(ClubDto clubDto) {
-    	Club club =ClubMapper.mapToClub(clubDto);
-    	return clubRepository.save(club);
+		String username = SecurityUtil.getSessionUser();
+		System.out.println("username"+username);
+		UserEntity user = userRepository.findByEmail(username);
+		System.out.println("users"+user);
+		Club club =ClubMapper.mapToClub(clubDto);
+		club.setCreatedBy(user);
+		return clubRepository.save(club);
     }
     
     @Override
@@ -40,7 +51,11 @@ public class ClubServiceImpl implements ClubService{
     }
 	@Override
 	public void updateClub(ClubDto clubDto) {
+		String email = SecurityUtil.getSessionUser();
+		UserEntity user = userRepository.findByEmail(email);
+		System.out.println("user"+user);
 		Club club = ClubMapper.mapToClub(clubDto);
+		club.setCreatedBy(user);
 		clubRepository.save(club);
 	}
 	@Override
